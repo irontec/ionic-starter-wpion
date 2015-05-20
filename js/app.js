@@ -1,8 +1,8 @@
-// Ionic Starter App
-var wordpressUrl    = '<%= url %>';
-var nameApp         = '<%= name %>';
-var descriptionApp  = '<%= description %>';
-var lang            = '<%= language %>';
+//Ionic Starter App
+var wordpressUrl    = 'http://blog.irontec.com';
+var nameApp         = 'My Blog';
+var descriptionApp  = 'Testing App';
+var lang            = 'es';
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
