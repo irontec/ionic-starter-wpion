@@ -1,0 +1,30 @@
+<ion-view title="{{pageTitle}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header has-footer" padding="true">
+        <div class="row responsive-md">
+            <div class="col col-50 col-offset-25">
+                <div ng-if="page">
+                    <h2 class="dark">{{page.title}}</h2>
+                    <hr />
+                    <div ng-bind-html="page.content"></div>
+                </div>
+                
+                <div class="card" ng-if="!page && !loading">
+                    <div class="item item-text-wrap" translate>No data</div>
+                </div>
+                
+                <div class="card" ng-if="loading">
+                    <div class="item item-text-wrap">
+                        <i class="icon ion-loading-c"></i> <translate>Loading...</translate>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<div class="bar bar-footer bar-dark">
+    <div style="text-align: center; width: 100%;">{{general.name}}</div>
+</div></div>

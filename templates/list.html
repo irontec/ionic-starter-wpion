@@ -1,0 +1,77 @@
+<ion-view title="{{categoryTitle}}">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+        <a class="tab-item" ng-click="showPopupSearch()">
+              <i class="icon ion-ios-search-strong"></i>
+        </a>
+    </ion-nav-buttons>
+    
+    <ion-content class="has-header has-footer">
+  
+        <ion-refresher pulling-text="{{'Drag and drop for update' | translate}}" on-refresh="doRefresh()" class="invisible" ng-if="!searchSite"></ion-refresher>
+
+        <div class="row responsive-md">
+            <div class="col col-50 col-offset-25">
+                <div class="card" ng-if="searchSite">
+                    <div class="item item-text-wrap">
+                        <translate>Search</translate>: <strong>{{searchSite}}</strong>
+                    </div>
+                </div>
+                <div class="card" ng-if="loading">
+                    <div class="item item-text-wrap">
+                        <i class="icon ion-loading-c"></i> <translate>Loading...</translate>
+                    </div>
+                </div>
+                
+                <div class="card" ng-if="!posts && !loading">
+                    <div class="item item-text-wrap" translate>No data</div>
+                </div>
+        
+                <div class="list card postList" ng-repeat="(key,post) in posts" ng-if="posts">
+                    <div class="bar bar-positive item">
+                        <a  href="#/app/post/{{post.ID}}">
+                            <h1 class="title">{{post.title}}</h1>
+                        </a>
+                    </div>
+                    
+                    <div ng-if="post.featured_image" class="item item-image">
+                        <img ng-src="{{post.featured_image.attachment_meta.sizes.medium.url}}" />
+                    </div>
+                
+                    <div class="item item-body">
+                        <p style="text-align: right;">{{ post.date | date : 'yyyy/MM/dd HH:mm'}}</p>
+                        <div class="contentPost" ng-bind-html="post.excerpt"></div>
+                        <p style="text-align: right;">
+                            <a class="button button-outline button-positive button-small icon-right ion-chevron-right" href="#/app/post/{{post.ID}}" translate>Read more</a>
+                        </p>
+                    </div>
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item" ng-click="socialShare('facebook',post)">
+                            <i class="icon ion-social-facebook"></i> <span class="hidden-xs">Facebook</span>
+                        </a>
+                        <a class="tab-item" ng-click="socialShare('twitter',post)">
+                            <i class="icon ion-social-twitter"></i> <span class="hidden-xs">Twitter</span>
+                        </a>
+                        <a class="tab-item" ng-click="socialShare('google',post)">
+                            <i class="icon ion-social-google"></i> <span class="hidden-xs">Google</span>
+                        </a>
+                        <a class="tab-item" ng-click="socialShare('pinterest',post)" ng-if="post.featured_image">
+                            <i class="icon ion-social-pinterest"></i> <span class="hidden-xs">Pinterest</span>
+                        </a>
+                    </div>
+                </div>
+        
+                <button class="button {{loadingIcon}} button-block button-calm loadingMore" ng-if="!loading && !searchSite && !showAlert && posts" ng-click="loadingMore()">
+                    <translate>Loading More</translate>
+                </button>
+          
+            </div>
+        </div>
+        
+    </ion-content>
+    
+</ion-view>

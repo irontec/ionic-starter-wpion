@@ -1,0 +1,47 @@
+<ion-side-menus>
+
+    <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button class="button-clear"><i class="icon ion-ios-arrow-back"></i></ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-pane>
+
+    <ion-side-menu side="left">
+        <header class="bar bar-header bar-dark">
+          <h1 class="title" translate>Menu</h1>
+        </header>
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/" class="item-icon-left">
+                  <i class="icon ion-ios-home"></i> <translate>Home</translate>
+                </ion-item>
+            </ion-list>
+            <div class="item item-divider" translate>Category</div>
+            <ion-list ng-repeat="category in categories" ng-if="categories">
+                <ion-item nav-clear menu-close href="#/app/category/{{category.ID}}/{{category.name}}" class="item-icon-left" ng-class="getClassActive('/app/category/' + (category.ID) + '/' + category.name,(category.ID))">
+                    <i class="icon ion-folder"></i> {{category.name}}
+                </ion-item>
+            </ion-list>
+              
+            <ion-list ng-if="!categories">
+                <ion-item nav-clear menu-close ng-click="reloadCategories()" class="item-icon-left">
+                    <i class="icon ion-ios-refresh"></i> <translate>Reload Category</translate>
+                </ion-item>
+            </ion-list>
+              
+            <div class="item item-divider" translate>Pages</div>
+            <ion-list ng-repeat="page in pages" ng-if="pages">
+                <ion-item nav-clear menu-close href="#/app/page/{{page.ID}}" class="item-icon-left" ng-class="getClassActive('/app/page/' + page.ID)">
+                    <i class="icon ion-document-text"></i> {{page.title}}
+                </ion-item>
+              </ion-list>
+              
+            <ion-list ng-if="!pages">
+                <ion-item nav-clear menu-close ng-click="reloadPages()" class="item-icon-left">
+                    <i class="icon ion-ios-refresh"></i> <translate>Reload Pages</translate>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

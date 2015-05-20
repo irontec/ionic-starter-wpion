@@ -1,0 +1,62 @@
+<ion-view title="{{postTitle}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+        <a class="tab-item" ng-click="showPopup()">
+              <i class="icon ion-android-share-alt"></i>
+        </a>
+    </ion-nav-buttons>
+  
+    <ion-content class="has-header has-footer postContent" padding="true">
+        <div class="row responsive-md">
+            <div class="col col-50 col-offset-25">
+                <div ng-if="post">
+                    <div class="card">
+                        <div class="item item-text-wrap">
+                            <h1 class="dark" ng-bind="post.title"></h1>
+                        </div>
+                        <div class="item item-text-wrap row row-center {{categoryClass}}">
+                            <div class="col col-67" style="margin-bottom: 0;">{{post.terms.category[0].name}}</div>
+                            <div class="col col-33" style="text-align: right; font-weight: bold; margin-bottom: 0;">{{ post.date | date : 'yyyy/MM/dd HH:mm'}}</div>
+                        </div>
+                        <div class="item item-image" ng-if="post.featured_image && post.featured_image.attachment_meta.sizes.medium">
+                            <img ng-src="{{post.featured_image.attachment_meta.sizes.medium.url}}">
+                        </div>
+                        
+                        <div class="item item-body">
+                            <div ng-bind-html="post.content"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="item" ng-if="post.posts">
+                        <h2 translate>More posts</h2>
+                    </div>
+                    
+                    <div class="list" ng-if="post.posts">
+                        <a class="item item-avatar" ng-repeat="morePost in post.posts" href="#/app/post/{{morePost.ID}}" ng-if="morePost.ID != post.ID">
+                            <img ng-src="{{morePost.featured_image.attachment_meta.sizes.thumbnail.url}}" ng-if="morePost.featured_image" />
+                            <h2>{{morePost.title}}</h2>
+                            <p>{{ morePost.date | date : 'yyyy/MM/dd HH:mm'}}</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card" ng-if="!post && !loading">
+                    <div class="item item-text-wrap" translate>No data</div>
+                </div>
+                
+                <div class="card" ng-if="loading">
+                    <div class="item item-text-wrap">
+                        <i class="icon ion-loading-c"></i> <translate>Loading...</translate>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<div class="bar bar-footer bar-dark">
+    <div style="text-align: center; width: 100%;">{{general.name}}</div>
+</div>

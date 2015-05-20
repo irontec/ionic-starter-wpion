@@ -1,0 +1,85 @@
+<ion-view title="{{'Home'|translate}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="tab-item" ng-click="showPopupSearch()">
+            <i class="icon ion-ios-search-strong"></i>
+        </a>
+    </ion-nav-buttons>
+    
+    <ion-content class="has-header">
+  
+        <ion-refresher pulling-text="{{'Drag and drop for update' | translate}}" on-refresh="doRefresh()" class="invisible" ng-if="!searchSite"></ion-refresher>
+    
+        <div class="row responsive-md">
+            <div class="col col-33 col-offset-33" style="text-align: center;">
+                <h1>{{general.name}}</h1>
+                <p>{{general.description}}</p>
+            </div>
+        </div>
+    
+  
+<!--     <ion-refresher pulling-text="Soltar para actualizar" on-refresh="doRefresh()" class="invisible" ng-if="!searchSite"> -->
+<!--     </ion-refresher> -->
+        <p ng-if="searchSite"><translate>Search</translate>: {{searchSite}}</p>
+    
+        <div class="row responsive-md">
+            <div class="col col-50 col-offset-25">
+            
+                <div class="card" ng-if="loading">
+                    <div class="item item-text-wrap">
+                        <i class="icon ion-loading-c"></i> <translate>Loading...</translate>
+                    </div>
+                </div>
+                
+                <div class="card" ng-if="!posts && !loading">
+                    <div class="item item-text-wrap" translate>No data</div>
+                </div>
+                
+                <div class="list card berriak" ng-if="posts">
+                    <div class="item">
+                        <h2 translate>Recent posts</h2>
+                    </div>
+                    <a href="#/app/post/{{post.ID}}" ng-repeat="(key,post) in posts" style="text-decoration: none;">
+                        <div class="item item-thumbnail-left">
+                            <img ng-src="{{post.featured_image.attachment_meta.sizes.thumbnail.url}}" ng-if="post.featured_image">
+                            <h2>{{post.title}}</h2>
+                            <p><span ng-ng-repeat="category in post.terms.category">{{ category.name }} <span ng-if="!$last">·</span> </span><br />{{ post.date | date : 'yyyy/MM/dd HH:mm'}}</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <ion-slide-box on-slide-changed="slideHasChanged($index)" ng-if="posts" does-continue="true" auto-play="true" show-pager="false">
+                    <ion-slide ng-repeat="(key,post) in sliderHome" ng-if="$index < 5">
+                        <div class="list card">
+                
+                            <div class="item">
+                                <h2>{{post.title}}</h2>
+                                <p><span ng-repeat="category in post.terms.category">{{ category.name }} <span ng-if="!$last">·</span> </span></p>
+                            </div>
+                          
+                            <div class="item item-image" ng-if="post.featured_image">
+                                <img ng-src="{{post.featured_image.attachment_meta.sizes.medium.url}}">
+                            </div>
+                          
+                            <a class="item item-icon-left positive" href="#/app/post/{{post.ID}}">
+                                <i class="icon ion-ios-arrow-thin-right"></i><translate>Read more</translate>
+                            </a>
+                        
+                        </div>
+                    </ion-slide>
+                </ion-slide-box>
+                
+                <ion-list ng-repeat="category in categories" ng-if="categories && posts">
+                    <ion-item nav-clear menu-close href="#/app/category/{{category.ID}}/{{category.name}}" class="" ng-class="getClassActive('/app/category/' + (category.ID) + '/' + category.name,(category.ID))">
+                        {{category.name}}
+                        <span class="badge badge-positive">{{category.count}}</span>
+                    </ion-item>
+                </ion-list>
+                
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

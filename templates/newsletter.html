@@ -1,0 +1,97 @@
+<div class="modal">
+    <ion-header-bar>
+        <h1 class="title">Buletina</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeNewsletter()"><i class="icon ion-close-round"></i></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row responsive-sm">
+            <div class="col col-80 col-offset-10">
+            
+                <div class="card padding-top" ng-if="!formShow">
+                    <div class="item item-text-wrap" ng-if="formMessage" ng-bind="formMessage" ng-class="alert">
+                    </div>
+                    <div class="item item-text-wrap" ng-if="!formMessage">
+                        <i class="icon ion-loading-c"></i> Kargatzen...
+                    </div>
+                </div>
+            
+                <form ng-submit="doNewsletter()" ng-if="formShow">
+                
+                    <div class="list list-inset">
+                        <label class="item item-input">
+                            <input type="text" ng-model="newsletterData.firstname" title="Izen-abizena" placeholder="Izen-abizena" required />
+                        </label>
+                        <label class="item item-input">
+                            <input type="email" ng-model="newsletterData.email" title="Posta elektroniko helbidea:" placeholder="Posta elektroniko helbidea" required />
+                        </label>
+                    </div>
+                    
+                    <ul class="list list-inset">
+                        <p>Nola jaso nahi dituzu artikuluak postontzian?</p>
+                        <li class="item item-checkbox">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="newsletterData.berehala" value="1" /> <!-- 1 -->
+                            </label>
+                            Berehala
+                        </li>
+                        <li class="item item-checkbox">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="newsletterData.egunero" value="9" /> <!-- 9 -->
+                            </label>
+                            Egunero
+                        </li>
+                        <li class="item item-checkbox">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="newsletterData.astero" value="5" /> <!-- 5 -->
+                            </label>
+                            Astero
+                        </li>
+                        <li class="item item-checkbox">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="newsletterData.hilero" value="7" /> <!-- 7 -->
+                            </label>
+                            Hilero
+                        </li>
+                    </ul>
+               
+                    
+                
+                
+                    <div class="list list-inset">
+                        <label class="item item-input item-stacked-label">
+                            <input type="text" ng-model="newsletterData.freeText" title="Zein gaietan zaude interesatuta? Zer nahi duzu lantzea blog honetan?" placeholder="Zein gaietan zaude interesatuta? Zer nahi duzu lantzea blog honetan?" />
+                        </label>
+                    </div>
+                
+                    <div class="list list-inset">
+                        <button class="button button-block button-assertive" type="submit">Harpidetu!</button>
+                    </div>
+                   
+                </form>
+            
+            </div>
+        </div>
+    </ion-content>
+</div>
+
+
+
+
+
+<!--      <form ng-submit="doNewsletter()"> -->
+<!--                     <div class="list"> -->
+<!--                         <label class="item item-input"> -->
+<!--                             <span class="input-label">Username</span> -->
+<!--                             <input type="text" ng-model="loginData.username"> -->
+<!--                         </label> -->
+<!--                         <label class="item item-input"> -->
+<!--                             <span class="input-label">Password</span> -->
+<!--                             <input type="password" ng-model="loginData.password"> -->
+<!--                         </label> -->
+<!--                         <label class="item"> -->
+<!--                             <button class="button button-block button-assertive" type="submit">Log in</button> -->
+<!--                         </label> -->
+<!--                     </div> -->
+<!--                 </form> -->
