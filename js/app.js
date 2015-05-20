@@ -1,8 +1,13 @@
-//Ionic Starter App
-var wordpressUrl    = 'http://blog.irontec.com';
-var nameApp         = 'My Blog';
-var descriptionApp  = 'Testing App';
-var lang            = 'es';
+// IONIC TEMPLATE APP
+// Modify this data
+
+var wordpressUrl    = 'http://blog.irontec.com'; // URL your wordpress
+var nameApp         = 'Irontec Blog'; // Main title of the application
+var descriptionApp  = 'Testing App'; // Subtitle of the application
+var lang            = 'es'; // Language of the aplication: es - eu - en
+
+
+
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
