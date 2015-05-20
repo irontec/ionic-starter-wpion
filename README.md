@@ -25,7 +25,15 @@ var descriptionApp  = 'Testing App'; // Subtitle of the application
 var lang            = 'es'; // Language of the aplication: es - eu - en
 ```
 
-### Ejecución de nuestra aplicación en un dispositivo o en nuestro servidor
+### Visualizarlo en nuestro servidor
+
+Ejecutamos el siguiente comando:
+
+```bash
+$ ionic serve --lab
+```
+
+### Exportarlo a una aplicación
 
 Luego, dentro de la carpeta `myApp`, ejecutar:
 
@@ -34,10 +42,4 @@ $ ionic platform add android
 $ ionic build android
 $ ionic emulate android
 ```
-Sustituye android por ios si estás en un Mac.
-
-Si queremos verlo en nuestro servidor, ejecutamos el siguiente comando:
-
-```bash
-$ ionic serve
-```
+> Sustituye `android` por `ios` si estás en un Mac.
